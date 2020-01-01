@@ -7,7 +7,7 @@ includeJs(...files) {
       const scriptElm = document.createElement('script');
       scriptElm.type = oldArg[0].match(/(?<=type=")(.*?)(?=")/g);
       scriptElm.src = oldArg[0].match(/(?<=src=")(.*?)(?=")/g);
-      scriptElm.addEventListener('load', () => functionExports.includeJs(newArg), false);
+      scriptElm.addEventListener('load', () => includeJs(newArg), false);
 
       document.body.appendChild(scriptElm);
 
