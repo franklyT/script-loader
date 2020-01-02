@@ -14,7 +14,7 @@ includeJs(...files) {
       console.log(`Loaded script ${logScript.substring(logScript.lastIndexOf('/') + 1)}`);
     }
 
-...
+// ...
 
 includeJs(
   '<script src="src/js/example1.js" type="text/javascript"></script>',
