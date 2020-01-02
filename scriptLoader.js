@@ -1,20 +1,19 @@
 function includeJs(...files) {
-    const oldArg = files.flat();
-    if (oldArg.length > 0) {
-      // push script name to var
-      const logScript = String(oldArg[0].match(/(?<=src=")(.*?)(?=")/g));
-      const newArg = oldArg.slice(1);
-      const scriptElm = document.createElement('script');
-      scriptElm.type = oldArg[0].match(/(?<=type=")(.*?)(?=")/g);
-      scriptElm.src = oldArg[0].match(/(?<=src=")(.*?)(?=")/g);
-      scriptElm.addEventListener('load', () => includeJs(newArg), false);
+  const oldArg = files.flat();
+  if (oldArg.length > 0) {
+    // push script name to var
+    const logScript = String(oldArg[0].match(/(?<=src=")(.*?)(?=")/g));
+    const newArg = oldArg.slice(1);
+    const scriptElm = document.createElement('script');
+    scriptElm.type = oldArg[0].match(/(?<=type=")(.*?)(?=")/g);
+    scriptElm.src = oldArg[0].match(/(?<=src=")(.*?)(?=")/g);
+    scriptElm.addEventListener('load', () => includeJs(newArg), false);
 
-      document.body.appendChild(scriptElm);
+    document.body.appendChild(scriptElm);
 
-      console.log(`Loaded script ${logScript.substring(logScript.lastIndexOf('/') + 1)}`);
-    }
+    console.log(`Loaded script ${logScript.substring(logScript.lastIndexOf('/') + 1)}`);
+  }
 }
-
 // ...
 
 includeJs(
