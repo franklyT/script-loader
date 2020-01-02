@@ -13,6 +13,7 @@ includeJs(...files) {
 
       console.log(`Loaded script ${logScript.substring(logScript.lastIndexOf('/') + 1)}`);
     }
+}
 
 // ...
 
