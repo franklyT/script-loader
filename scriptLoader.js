@@ -1,4 +1,4 @@
-includeJs(...files) {
+function includeJs(...files) {
     const oldArg = files.flat();
     if (oldArg.length > 0) {
       // push script name to var
