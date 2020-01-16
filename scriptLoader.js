@@ -3,7 +3,8 @@ function includeJs(...files) {
   const oldArg = files.flat();
   if (oldArg.length > 0) {
     // push script name to var
-    const logScript = String(oldArg[0].match(/(?<=src=")(.*?)(?=")/g));
+    let logScript = String(oldArg[0].match(/(?<=src=")(.*?)(?=")/g));
+    logScript = logScript.substring(logScript.lastIndexOf('/') + 1);
     const newArg = oldArg.slice(1);
     const scriptElm = document.createElement('script');
     scriptElm.type = oldArg[0].match(/(?<=type=")(.*?)(?=")/g);
@@ -18,7 +19,7 @@ function includeJs(...files) {
 
     document.body.appendChild(scriptElm);
 
-    console.log(`Loaded script ${logScript.substring(logScript.lastIndexOf('/') + 1)}`);
+    console.log(`Loaded script ${logScript}`);
   }
 }
 // ...
