@@ -1,4 +1,5 @@
 function includeJs(...files) {
+  const timer = performance.now();
   const oldArg = files.flat();
   if (oldArg.length > 0) {
     // push script name to var
@@ -7,7 +8,13 @@ function includeJs(...files) {
     const scriptElm = document.createElement('script');
     scriptElm.type = oldArg[0].match(/(?<=type=")(.*?)(?=")/g);
     scriptElm.src = oldArg[0].match(/(?<=src=")(.*?)(?=")/g);
-    scriptElm.addEventListener('load', () => includeJs(newArg), false);
+    scriptElm.addEventListener(
+      'load',
+      () => {
+        console.log(`${Math.round(performance.now() - timer)} ms to load.`), includeJs(newArg);
+      },
+      false
+    );
 
     document.body.appendChild(scriptElm);
 
